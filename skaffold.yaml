@@ -1,4 +1,5 @@
 ---
+# Skaffold also needs kubectl
 apiVersion: skaffold/v2beta13
 kind: Config
 metadata:
