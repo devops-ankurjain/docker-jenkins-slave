@@ -1,0 +1,26 @@
+---
+apiVersion: skaffold/v2beta13
+kind: Config
+metadata:
+  name: build-image
+build:
+  cluster:
+    namespace: jenkins
+    serviceAccount: jenkins-slave-devops
+  tagPolicy:
+    customTemplate:
+      template: "{{.TIMESTAMP}}_{{.GIT_COMMIT}}"
+      components:
+      - name: TIMESTAMP
+        dateTime:
+          format: "20060102_1504"
+          timezone: "America/New_York"
+      - name: GIT_COMMIT
+        gitCommit:
+          variant: AbbrevCommitSha
+          ignoreChanges: true
+  artifacts:
+  - image: 574940526930.dkr.ecr.us-east-1.amazonaws.com/tools
+    kaniko:
+      image: gcr.io/kaniko-project/executor:v1.3.0
+      initImage: gcr.io/k8s-skaffold/skaffold-helpers/busybox@sha256:ee44b399df993016003bf5466bd3eeb221305e9d0fa831606bc7902d149c775b
