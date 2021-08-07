@@ -5,8 +5,8 @@ metadata:
   name: build-image
 build:
   cluster:
-    namespace: jenkins
-    serviceAccount: jenkins-slave-devops
+    namespace: default
+    serviceAccount: default
   tagPolicy:
     customTemplate:
       template: "{{.TIMESTAMP}}_{{.GIT_COMMIT}}"
