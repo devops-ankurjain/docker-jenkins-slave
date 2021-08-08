@@ -8,5 +8,5 @@ export AWS_ACCESS_KEY_ID=$(echo "$ROLE" | jq -r .Credentials.AccessKeyId)
 export AWS_SECRET_ACCESS_KEY=$(echo "$ROLE" | jq -r .Credentials.SecretAccessKey)
 export AWS_SESSION_TOKEN=$(echo "$ROLE" | jq -r .Credentials.SessionToken)
 
-make plan
+
 make apply
